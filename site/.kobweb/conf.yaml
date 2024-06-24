@@ -1,0 +1,14 @@
+site:
+  title: "."
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/dist/js/developmentExecutable/reservy.js"
+      api: "build/libs/reservy.jar"
+    prod:
+      script: "build/dist/js/productionExecutable/reservy.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080

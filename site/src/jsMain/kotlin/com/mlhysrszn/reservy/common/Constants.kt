@@ -1,0 +1,39 @@
+package com.mlhysrszn.reservy.common
+
+object Constants {
+    const val BASE_URL = "https://api.canerture.com/reservy/"
+    const val SIDE_PANEL_WIDTH = 250
+
+    const val QUERY_PARAM = "query"
+    const val CATEGORY_PARAM = "category"
+    const val POST_SHORT_PARAM = "short"
+    const val POST_AUTHOR_ID_PARAM = "authorId"
+}
+
+object Res {
+    object Image {
+        const val LOGO = "/reservy-logo.png"
+    }
+
+    object PathIcon {
+        const val CREATE =
+            "M12 9.52148V12.5215M12 12.5215V15.5215M12 12.5215H15M12 12.5215H9M21 12.5215C21 13.7034 20.7672 14.8737 20.3149 15.9656C19.8626 17.0576 19.1997 18.0497 18.364 18.8854C17.5282 19.7212 16.5361 20.3841 15.4442 20.8364C14.3522 21.2887 13.1819 21.5215 12 21.5215C10.8181 21.5215 9.64778 21.2887 8.55585 20.8364C7.46392 20.3841 6.47177 19.7212 5.63604 18.8854C4.80031 18.0497 4.13738 17.0576 3.68508 15.9656C3.23279 14.8737 3 13.7034 3 12.5215C3 10.1345 3.94821 7.84535 5.63604 6.15752C7.32387 4.4697 9.61305 3.52148 12 3.52148C14.3869 3.52148 16.6761 4.4697 18.364 6.15752C20.0518 7.84535 21 10.1345 21 12.5215Z"
+        const val LOGOUT =
+            "M11 16.5215L7 12.5215M7 12.5215L11 8.52148M7 12.5215H21M16 16.5215V17.5215C16 18.3171 15.6839 19.0802 15.1213 19.6428C14.5587 20.2054 13.7956 20.5215 13 20.5215H6C5.20435 20.5215 4.44129 20.2054 3.87868 19.6428C3.31607 19.0802 3 18.3171 3 17.5215V7.52148C3 6.72583 3.31607 5.96277 3.87868 5.40016C4.44129 4.83755 5.20435 4.52148 6 4.52148H13C13.7956 4.52148 14.5587 4.83755 15.1213 5.40016C15.6839 5.96277 16 6.72583 16 7.52148V8.52148"
+    }
+}
+
+object Id {
+    const val EMAIL_INPUT = "emailInput"
+    const val PASSWORD_INPUT = "passwordInput"
+    const val PHONE_NUMBER_INPUT = "phoneNumberInput"
+    const val FIRST_NAME_INPUT = "firstNameInput"
+    const val LAST_NAME_INPUT = "lastNameInput"
+    const val NAME_INPUT = "nameInput"
+    const val ADDRESS_INPUT = "addressInput"
+    const val CITY_INPUT = "cityInput"
+    const val COUNTRY_INPUT = "countryInput"
+    const val SVG_PARENT = "svgParent"
+    const val VECTOR_ICON = "vectorIcon"
+    const val NAVIGATION_TEXT = "navigationText"
+}
