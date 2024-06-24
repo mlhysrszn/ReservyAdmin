@@ -15,7 +15,7 @@ import kotlinx.serialization.json.Json
 suspend fun login(
     email: String,
     password: String,
-    onSuccess: (User) -> Unit = {},
+    onSuccess: (User?) -> Unit = {},
     onError: (String) -> Unit = {}
 ) = safeApiCall<User>(
     call = {
@@ -34,7 +34,7 @@ suspend fun register(
     email: String,
     phoneNumber: String,
     password: String,
-    onSuccess: (User) -> Unit = {},
+    onSuccess: (User?) -> Unit = {},
     onError: (String) -> Unit = {}
 ) = safeApiCall<User>(
     call = {
@@ -65,9 +65,9 @@ suspend fun createBusiness(
     email: String,
     workingHours: List<WorkingHourRequest>,
     reservationTypes: List<ReservationTypeRequest>,
-    onSuccess: (Unit) -> Unit = {},
+    onSuccess: (Unit?) -> Unit = {},
     onError: (String) -> Unit = {}
-) = safeApiCall<Unit>(
+) = safeApiCall(
     call = {
         post(
             path = "create_business",

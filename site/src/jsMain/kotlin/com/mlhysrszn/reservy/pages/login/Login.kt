@@ -107,7 +107,7 @@ fun LoginScreen() {
                                 email = email,
                                 password = password,
                                 onSuccess = {
-                                    it.remember()
+                                    it?.remember()
                                     context.router.navigateTo(Screen.AdminCreateBusiness.route)
                                 },
                                 onError = { errorText = it }
@@ -132,7 +132,7 @@ fun LoginScreen() {
                                 phoneNumber = phoneNumber,
                                 password = password,
                                 onSuccess = {
-                                    it.remember()
+                                    it?.remember()
                                     context.router.navigateTo(Screen.AdminCreateBusiness.route)
                                 },
                                 onError = { errorText = it }

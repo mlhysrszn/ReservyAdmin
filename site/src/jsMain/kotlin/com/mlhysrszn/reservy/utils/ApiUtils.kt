@@ -10,12 +10,16 @@ import kotlinx.serialization.json.Json
 object ApiUtils {
     inline fun <reified T : Any> safeApiCall(
         call: () -> ByteArray,
-        onSuccess: (T) -> Unit,
+        onSuccess: (T?) -> Unit,
         onError: (String) -> Unit,
     ) {
         try {
             val response = call().parseData<BaseResponse<T>>()
-            onSuccess(response.data!!)
+            if (response.data != null) {
+                onSuccess(response.data)
+            } else {
+                onSuccess(null)
+            }
         } catch (e: Exception) {
             onError(e.message.orEmpty())
         }

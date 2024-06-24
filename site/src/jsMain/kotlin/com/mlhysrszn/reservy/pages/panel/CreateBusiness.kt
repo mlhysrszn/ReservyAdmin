@@ -43,6 +43,7 @@ import kotlinx.browser.document
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.web.css.AlignContent
 import org.jetbrains.compose.web.css.px
+import kotlinx.browser.window
 
 data class CreateBusinessUIState(
     val isLoading: Boolean = true,
@@ -168,18 +169,29 @@ fun CreateBusinessScreen() {
                         )
                     }
 
-
-                    scope.launch {
-                        createBusiness(
-                            name = name,
-                            address = address,
-                            city = city,
-                            country = country,
-                            phoneNumber = phoneNumber,
-                            email = email,
-                            workingHours = workingHours,
-                            reservationTypes = reservationTypes,
-                        )
+                    if (name.isEmpty() || address.isEmpty() || city.isEmpty() || country.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || reservationTypes.isEmpty() || reservationTypes.any { it.name.isEmpty() || it.timePeriod.toString().isEmpty() || it.price.toString().isEmpty() }) {
+                        window.alert("Please fill in all the fields.")
+                    } else {
+                        scope.launch {
+                            createBusiness(
+                                name = name,
+                                address = address,
+                                city = city,
+                                country = country,
+                                phoneNumber = phoneNumber,
+                                email = email,
+                                workingHours = workingHours,
+                                reservationTypes = reservationTypes,
+                                onSuccess = {
+                                    println("Success!")
+                                    window.alert("Business created successfully.")
+                                },
+                                onError = {
+                                    println("Error: $it")
+                                    window.alert(it)
+                                }
+                            )
+                        }
                     }
                 }
             )
@@ -271,12 +283,12 @@ private fun ReservationAreaContent(
 
                 InputContent(
                     id = "ReservationType-${index}-TimePeriod",
-                    placeholder = type.timePeriod.toString().ifEmpty { "Time Period" },
+                    placeholder = if (type.timePeriod == 0) "Time Period" else type.timePeriod.toString(),
                 )
 
                 InputContent(
                     id = "ReservationType-${index}-Price",
-                    placeholder = type.price.toString().ifEmpty { "Price" },
+                    placeholder = if (type.price == 0.0) "Price" else type.price.toString(),
                 )
 
                 Button(
