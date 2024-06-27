@@ -1,7 +1,10 @@
 package com.mlhysrszn.reservy.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ReservationType(
-    val name: String = "",
-    val timePeriod: Int = 0,
-    val price: Double = 0.0,
+    var name: String = "",
+    var timePeriod: Int = 0,
+    var price: Double = 0.0,
 )

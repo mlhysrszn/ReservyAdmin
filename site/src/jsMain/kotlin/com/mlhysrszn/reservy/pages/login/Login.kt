@@ -108,7 +108,11 @@ fun LoginScreen() {
                                 password = password,
                                 onSuccess = {
                                     it?.remember()
-                                    context.router.navigateTo(Screen.AdminCreateBusiness.route)
+                                    if (it?.businessId != null) {
+                                        context.router.navigateTo(Screen.AdminUpdateBusiness.route)
+                                    } else {
+                                        context.router.navigateTo(Screen.AdminCreateBusiness.route)
+                                    }
                                 },
                                 onError = { errorText = it }
                             )
@@ -163,7 +167,7 @@ fun LoginContent(
     ) {
         InputContent(
             id = Id.EMAIL_INPUT,
-            placeholder = "E-Mail"
+            placeholder = "E-Mail",
         )
 
         InputContent(

@@ -1,11 +1,13 @@
 package com.mlhysrszn.reservy.data
 
+import com.mlhysrszn.reservy.data.model.Business
 import com.mlhysrszn.reservy.data.model.BusinessRequest
 import com.mlhysrszn.reservy.data.model.LoginRequest
 import com.mlhysrszn.reservy.data.model.RegisterRequest
 import com.mlhysrszn.reservy.data.model.ReservationTypeRequest
 import com.mlhysrszn.reservy.data.model.User
 import com.mlhysrszn.reservy.data.model.WorkingHourRequest
+import com.mlhysrszn.reservy.utils.ApiUtils.get
 import com.mlhysrszn.reservy.utils.ApiUtils.post
 import com.mlhysrszn.reservy.utils.ApiUtils.safeApiCall
 import kotlinx.browser.localStorage
@@ -83,6 +85,56 @@ suspend fun createBusiness(
                     reservationTypes = reservationTypes
                 )
             ).encodeToByteArray()
+        )
+    },
+    onSuccess = onSuccess,
+    onError = onError
+)
+
+suspend fun updateBusiness(
+    id: Int,
+    name: String,
+    address: String,
+    city: String,
+    country: String,
+    phoneNumber: String,
+    email: String,
+    workingHours: List<WorkingHourRequest>,
+    reservationTypes: List<ReservationTypeRequest>,
+    onSuccess: (Unit?) -> Unit = {},
+    onError: (String) -> Unit = {}
+) = safeApiCall(
+    call = {
+        post(
+            path = "update_business",
+            body = Json.encodeToString(
+                BusinessRequest(
+                    id = id,
+                    name = name,
+                    address = address,
+                    city = city,
+                    country = country,
+                    phoneNumber = phoneNumber,
+                    email = email,
+                    workingHours = workingHours,
+                    reservationTypes = reservationTypes
+                )
+            ).encodeToByteArray()
+        )
+    },
+    onSuccess = onSuccess,
+    onError = onError
+)
+
+suspend fun getBusiness(
+    id: Int,
+    onSuccess: (Business?) -> Unit = {},
+    onError: (String) -> Unit = {}
+) = safeApiCall<Business>(
+    call = {
+        get(
+            param = Pair("id", id.toString()),
+            path = "get_business_by_id",
         )
     },
     onSuccess = onSuccess,

@@ -3,29 +3,23 @@ package com.mlhysrszn.reservy.components.widgets
 import androidx.compose.runtime.Composable
 import com.mlhysrszn.reservy.LoginInputStyle
 import com.mlhysrszn.reservy.getSitePalette
-import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
-import com.varabyte.kobweb.compose.ui.modifiers.borderRadius
-import com.varabyte.kobweb.compose.ui.modifiers.fontSize
-import com.varabyte.kobweb.compose.ui.modifiers.height
-import com.varabyte.kobweb.compose.ui.modifiers.id
-import com.varabyte.kobweb.compose.ui.modifiers.margin
-import com.varabyte.kobweb.compose.ui.modifiers.outline
-import com.varabyte.kobweb.compose.ui.modifiers.padding
-import com.varabyte.kobweb.compose.ui.modifiers.width
+import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.style.toModifier
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.css.LineStyle
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Input
+import org.w3c.dom.HTMLInputElement
+import org.w3c.dom.events.InputEvent
 
 @Composable
 fun InputContent(
     id: String = "",
     placeholder: String,
     text: String = "",
+    onValueChange: (String) -> Unit = {}
 ) {
     Input(
         type = InputType.Text,
@@ -44,8 +38,12 @@ fun InputContent(
                 color = Colors.Transparent
             )
             .toAttrs {
-                attr("name", text)
+                attr("value", text)
                 attr("placeholder", placeholder)
+                onInput {
+                    val input = it.target as HTMLInputElement
+                    onValueChange(input.value)
+                }
             }
     )
 }

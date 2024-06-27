@@ -27,4 +27,5 @@ fun User.remember() {
     localStorage["id"] = id.toString()
     localStorage["email"] = email
     localStorage["isAdmin"] = true.toString()
+    localStorage["businessId"] = businessId.toString()
 }

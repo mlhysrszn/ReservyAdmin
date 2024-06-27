@@ -44,7 +44,7 @@ import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.vh
 
 @Composable
-fun SidePanel() {
+fun SidePanel(hasBusiness: Boolean) {
     Column(
         modifier = Modifier
             .padding(leftRight = 40.px, topBottom = 50.px)
@@ -61,12 +61,12 @@ fun SidePanel() {
             src = Res.Image.LOGO,
             alt = "Logo Image"
         )
-        AdminNavigationItems()
+        AdminNavigationItems(hasBusiness)
     }
 }
 
 @Composable
-fun AdminNavigationItems() {
+fun AdminNavigationItems(hasBusiness: Boolean) {
     val context = rememberPageContext()
     SpanText(
         modifier = Modifier
@@ -76,25 +76,28 @@ fun AdminNavigationItems() {
         text = "Dashboard"
     )
 
-    NavigationItem(
-        modifier = Modifier.margin(bottom = 24.px),
-        selected = true,
-        title = "Create Business",
-        icon = Res.PathIcon.CREATE,
-        onClick = {
-            context.router.navigateTo(Screen.AdminCreateBusiness.route)
-        }
-    )
+    if (!hasBusiness) {
+        NavigationItem(
+            modifier = Modifier.margin(bottom = 24.px),
+            selected = true,
+            title = "Create Business",
+            icon = Res.PathIcon.CREATE,
+            onClick = {
+                context.router.navigateTo(Screen.AdminCreateBusiness.route)
+            }
+        )
+    } else {
+        NavigationItem(
+            modifier = Modifier.margin(bottom = 24.px),
+            selected = false,
+            title = "Update Business",
+            icon = Res.PathIcon.CREATE,
+            onClick = {
+                context.router.navigateTo(Screen.AdminUpdateBusiness.route)
+            }
+        )
+    }
 
-    NavigationItem(
-        modifier = Modifier.margin(bottom = 24.px),
-        selected = false,
-        title = "Update Business",
-        icon = Res.PathIcon.CREATE,
-        onClick = {
-            context.router.navigateTo(Screen.AdminUpdateBusiness.route)
-        }
-    )
     NavigationItem(
         title = "Logout",
         icon = Res.PathIcon.LOGOUT,

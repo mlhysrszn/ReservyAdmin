@@ -60,7 +60,7 @@ fun CreateBusinessScreen() {
 
     val scope = rememberCoroutineScope()
 
-    AdminPageLayout {
+    AdminPageLayout(hasBusiness = false) {
         Column(
             modifier = Modifier
                 .fillMaxSize()

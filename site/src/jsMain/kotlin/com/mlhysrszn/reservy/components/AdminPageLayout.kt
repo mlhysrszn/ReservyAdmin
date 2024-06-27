@@ -9,7 +9,7 @@ import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 
 @Composable
-fun AdminPageLayout(content: @Composable () -> Unit) {
+fun AdminPageLayout(hasBusiness: Boolean = false, content: @Composable () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -18,7 +18,7 @@ fun AdminPageLayout(content: @Composable () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            SidePanel()
+            SidePanel(hasBusiness)
             content()
         }
     }
